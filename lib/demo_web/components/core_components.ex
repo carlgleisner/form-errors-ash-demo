@@ -422,10 +422,8 @@ defmodule DemoWeb.CoreComponents do
   slot :inner_block
 
   def radio_group(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
-    # errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
-    #
-    # As per Zach's comment: https://elixirforum.com/t/form-errors-not-being-shown/66119/2
-    errors = field.errors
+    # There is a bug in this custom component of mine that I will handle separately
+    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
 
     assigns =
       assigns

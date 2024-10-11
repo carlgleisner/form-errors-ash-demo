@@ -23,11 +23,12 @@ defmodule DemoWeb.DemoLive do
     </div>
     <.simple_form for={@form} phx-change="validate" phx-submit="save">
       <.input field={@form[:name]} label="Name" phx-debounce={400} autofocus data-1p-ignore />
-      <.radio_group field={@form[:food]} label="Food">
+      <.input field={@form[:food]} label="Food" phx-debounce={400} />
+      <%!-- <.radio_group field={@form[:food]} label="Food">
         <:radio value="pizza">Pizza</:radio>
         <:radio value="taco">Taco</:radio>
         <:radio value="glue">Glue (illegal)</:radio>
-      </.radio_group>
+      </.radio_group> --%>
       <:actions>
         <.button>Place order</.button>
       </:actions>
@@ -68,7 +69,7 @@ defmodule DemoWeb.DemoLive do
          |> push_navigate(to: ~p"/")}
 
       {:error, form} ->
-        {:noreply, assign(socket, form: form) |> dbg()}
+        {:noreply, assign(socket, form: form)}
     end
   end
 end
